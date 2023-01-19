@@ -1,0 +1,18 @@
+[
+  {
+    "model": "seshapi.follow",
+    "pk": 1,
+    "fields": {
+      "follower": 1,
+      "followed": 1
+    }
+  },
+  {
+    "model": "seshapi.follow",
+    "pk": 2,
+    "fields": {
+      "follower": 1,
+      "followed": 3
+    }
+  }
+]
