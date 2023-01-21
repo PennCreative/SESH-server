@@ -9,8 +9,11 @@ class AttendanceView(ViewSet):
   
   def list(self, request):
     """GET requests for Attendance"""
-    
+    session = self.request.query_params.get('session_id')
     attending = Attendance.objects.all()
+    
+    if session is not None:
+      attending = attending.filter(session_id=session)
 
     serializer = AttendanceSerializer(attending, many=True)
     return Response(serializer.data)
