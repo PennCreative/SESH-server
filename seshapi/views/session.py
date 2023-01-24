@@ -17,6 +17,17 @@ class SessionView(ViewSet):
       return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
   
   def list(self, request):
-    attending = Attendance.objects.all()
-    session
-    
+    sessions = Session.objects.all()
+    uid_query = request.query_params.get('uid', None)
+    if uid_query is not None:
+      sessions = sessions.filter(user=uid_query)
+    serializer = SessionSerializer(sessions, many = True)
+    return Response(serializer.data)
+
+
+class SessionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Session
+        fields = ('id','creator', 'address', 'city', 'state', 'datetime', 'contest') 
+        depth = 1
