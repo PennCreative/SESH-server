@@ -15,7 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from rest_framework import routers
+from seshapi.views import register_user, check_user
+from seshapi.views import UserView, SessionView, CommentView, AttendanceView, FollowView, FollowerView, FollowedView, PostView
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'users', UserView, 'user')
+router.register(r'sessions', SessionView, 'session')
+router.register(r'comments', CommentView, 'comment')
+router.register(r'attendances', AttendanceView, 'attendance')
+router.register(r'follows', FollowView, 'follow')
+router.register(r'posts', PostView, 'post')
 
 urlpatterns = [
+# Requests to http://localhost:8000/register will be routed to the register_user function
+    path('register', register_user),
+# Requests to http://localhost:8000/checkuser will be routed to the login_user function
+    path('checkuser', check_user),
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
+    path('followers/<int:follower_id>', FollowerView.as_view(), name='followers'),
+    path('followed/<int:followed_id>', FollowedView.as_view(), name='followed')
 ]
