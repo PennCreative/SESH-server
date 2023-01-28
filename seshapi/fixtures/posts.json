@@ -1,0 +1,32 @@
+[
+  {
+    "model": "seshapi.post",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "creator": 1,
+      "publication_date": "2009-02-19",
+      "content": "Api's first post"
+    }
+  },
+  {
+    "model": "seshapi.post",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "creator": 1,
+      "publication_date": "2009-02-19",
+      "content": "Api's second post"
+    }
+  },
+  {
+    "model": "seshapi.post",
+    "pk": 3,
+    "fields": {
+      "id": 3,
+      "creator": 1,
+      "publication_date": "2009-02-19",
+      "content": "Api's third post"
+    }
+  }
+]

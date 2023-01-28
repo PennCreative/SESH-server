@@ -1,0 +1,35 @@
+[
+  {
+    "model": "seshapi.comment",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "creator": 1,
+      "post": 1,
+      "publication_date": "2009-02-19",
+      "content": "Api's first comment"
+    }
+  },
+  {
+    "model": "seshapi.comment",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "creator": 1,
+      "post": 1,
+      "publication_date": "2009-02-19",
+      "content": "Api's third comment"
+    }
+  },
+  {
+    "model": "seshapi.comment",
+    "pk": 3,
+    "fields": {
+      "id": 3,
+      "creator": 1,
+      "post": 1,
+      "publication_date": "2009-02-19",
+      "content": "Api's third comment"
+    }
+  }
+]

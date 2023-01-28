@@ -18,13 +18,45 @@ class SessionView(ViewSet):
   
   def list(self, request):
     sessions = Session.objects.all()
-    uid_query = request.query_params.get('uid', None)
-    if uid_query is not None:
-      sessions = sessions.filter(user=uid_query)
+    id_query = request.query_params.get('id', None)
+    if id_query is not None:
+      sessions = sessions.filter(session=id_query)
     serializer = SessionSerializer(sessions, many = True)
     return Response(serializer.data)
 
-
+  def create(self, request):
+    
+    creator = User.objects.get(id=request.data["creator_id"])
+    session = Session.objects.create(
+      creator=creator,
+      address=request.data["address"],
+      city=request.data["city"],
+      state=request.data["state"],
+      datetime=request.data["datetime"],
+      contest=request.data["contest"]
+    )
+    serializer = SessionSerializer(session)
+    return Response(serializer.data)
+  
+  def update(self, request, pk):
+    """PUT requests for Sessions"""
+    session = Session.objects.get(pk=pk)
+    
+    session.creator = request.data["creator"]
+    session.address = request.data["address"]
+    session.city = request.data["city"]
+    session.state = request.data["state"]
+    session.datetime = request.data["datetime"]
+    session.contest = request.data["contest"]
+    session.save()
+    
+    return Response(None, status=status.HTTP_204_NO_CONTENT)
+  
+  def destroy(self, request, pk):
+    """DELETE session"""
+    session = Session.objects.get(pk=pk)
+    session.delete()
+    return Response(None, status=status.HTTP_204_NO_CONTENT)
 class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:

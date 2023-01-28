@@ -48,7 +48,6 @@ class CommentView(ViewSet):
     
 class CommentSerializer(serializers.ModelSerializer):
   """serializer for comments"""
-  created_on = serializers.DateTimeField(format="%m-%d-%Y")
   class Meta:
     model = Comment
     depth = 1

@@ -1,0 +1,41 @@
+[
+  {
+    "model": "seshapi.session",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "creator": 1,
+      "address": "101 Miller Plaza",
+      "city": "Murfreesboro",
+      "state": "Tennessee",
+      "datetime": "2009-02-19",
+      "contest": false
+    }
+  },
+  {
+    "model": "seshapi.session",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "creator": 1,
+      "address": "102 Miller Plaza",
+      "city": "Murfreesboroo",
+      "state": "Tennessee",
+      "datetime": "2009-02-19",
+      "contest": false
+    }
+  },
+  {
+    "model": "seshapi.session",
+    "pk": 3,
+    "fields": {
+      "id": 3,
+      "creator": 1,
+      "address": "103 Miller Plaza",
+      "city": "Murfreesborooo",
+      "state": "Tennessee",
+      "datetime": "2009-02-19",
+      "contest": false
+    }
+  }
+]

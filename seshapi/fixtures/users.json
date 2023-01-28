@@ -33,7 +33,7 @@
       "model": "seshapi.user",
       "pk": 3,
       "fields": {
-          "uid": 1,
+          "uid": 3,
           "first_name": "Joey",
           "last_name": "Donuts",
           "handle": "scootz",

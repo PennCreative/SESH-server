@@ -6,11 +6,17 @@ from seshapi.models import User, Attendance, Session
 
 class AttendanceView(ViewSet):
   """Requests for Attendance"""
-  
+  def retrieve(self, request, pk):
+    try:
+      attendance = Attendance.objects.get(pk=pk)
+      serializer = AttendanceSerializer(attendance)
+      return Response(serializer.data)
+    except Attendance.DoesNotExist as ex:
+      return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
   def list(self, request):
     """GET requests for Attendance"""
-    session = self.request.query_params.get('session_id')
     attending = Attendance.objects.all()
+    session = self.request.query_params.get('session_id', None)
     
     if session is not None:
       attending = attending.filter(session_id=session)
@@ -26,15 +32,15 @@ class AttendanceView(ViewSet):
   def create(self, request):
     """Handles POST"""
     
-    attendee = User.objects.get(pk=request.data['user_id'])
-    session = Session.objects.get(pk=request.data['session_id'])
+    attendee = User.objects.get(pk=request.data['attendee'])
+    session = Session.objects.get(pk=request.data['session'])
     
-    attending = Attendance.objects.create(
+    attendance = Attendance.objects.create(
       attendee = attendee,
       session = session
     )
     
-    serializer = AttendanceSerializer(attending)
+    serializer = AttendanceSerializer(attendance)
     
     return Response(serializer.data)
   
