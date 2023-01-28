@@ -2,7 +2,10 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from seshapi.models import User
+from seshapi.models import User, Session
+from rest_framework.decorators import action
+from rest_framework import generics
+
 class UserView(ViewSet):
   """SESH User View"""
   
@@ -75,3 +78,8 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields = ('id', 'uid', 'first_name', 'last_name', 'handle', 'bio', 'profile_image_url', 'email', 'created_on', 'active', 'is_staff')
       
+class mySessionView(generics.ListCreateAPIView):
+  serializer_class = UserSerializer
+  def get_queryset(self):
+    creator_id = self.kwargs['creator_id']
+    return Session.objects.filter(creator__id=creator_id)

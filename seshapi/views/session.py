@@ -2,7 +2,10 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from seshapi.models import User, Session, Attendance
+from seshapi.models import User, Session
+from rest_framework.decorators import action
+from rest_framework import generics
+
 
 class SessionView(ViewSet):
   """Request Handlers for Sessions"""
@@ -63,3 +66,9 @@ class SessionSerializer(serializers.ModelSerializer):
         model = Session
         fields = ('id','creator', 'address', 'city', 'state', 'datetime', 'contest') 
         depth = 1
+
+class mySessionView(generics.ListCreateAPIView):
+  serializer_class = SessionSerializer
+  def get_queryset(self):
+    creator_id = self.kwargs['creator_id']
+    return Session.objects.filter(creator__id=creator_id)

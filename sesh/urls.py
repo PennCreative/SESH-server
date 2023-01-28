@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from seshapi.views import register_user, check_user
-from seshapi.views import UserView, SessionView, CommentView, AttendanceView, FollowView, FollowerView, FollowedView, PostView
+from seshapi.views import UserView, SessionView, CommentView, AttendanceView, FollowView, FollowerView, FollowedView, PostView, mySessionView, myPostView, myAttendanceView, mySessionsView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
@@ -36,5 +36,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('followers/<int:follower_id>', FollowerView.as_view(), name='followers'),
-    path('followed/<int:followed_id>', FollowedView.as_view(), name='followed')
+    path('followed/<int:followed_id>', FollowedView.as_view(), name='followed'),
+    path('mysessions/<int:creator_id>', mySessionView.as_view(), name='mysessions'),
+    path('myposts/<int:creator_id>', myPostView.as_view(), name='myposts'),
+    path('attending/<int:session_id>', myAttendanceView.as_view(), name='attending'),
+    path('atsesh/<int:attendee_id>', mySessionsView.as_view(), name='atsesh'),
 ]

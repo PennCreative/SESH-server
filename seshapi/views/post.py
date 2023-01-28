@@ -4,7 +4,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from seshapi.models import Post, User
-
+from rest_framework.decorators import action
+from rest_framework import generics
 class PostView(ViewSet):
 
     def retrieve(self, request, pk):
@@ -55,3 +56,9 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ('id', 'creator', 'publication_date', 'content') 
         depth = 1
+
+class myPostView(generics.ListCreateAPIView):
+  serializer_class = PostSerializer
+  def get_queryset(self):
+    creator_id = self.kwargs['creator_id']
+    return Post.objects.filter(creator__id=creator_id)
