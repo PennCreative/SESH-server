@@ -29,7 +29,6 @@ class PostView(ViewSet):
         creator = User.objects.get(id=request.data["creator"])
         post = Post.objects.create(
             creator = creator,
-            publication_date = request.data["publication_date"],
             content = request.data["content"]
         )
         serializer = PostSerializer(post)
@@ -38,8 +37,6 @@ class PostView(ViewSet):
     def update(self, request, pk):
 
         post = Post.objects.get(pk=pk)
-
-        post.publication_date = request.data["publication_date"]
         post.content = request.data["content"]
         post.save()
 
@@ -54,7 +51,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('id', 'creator', 'publication_date', 'content') 
+        fields = ('id', 'creator', 'content') 
         depth = 1
 
 class myPostView(generics.ListCreateAPIView):

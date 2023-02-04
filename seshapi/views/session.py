@@ -32,10 +32,12 @@ class SessionView(ViewSet):
     creator = User.objects.get(id=request.data["creator_id"])
     session = Session.objects.create(
       creator=creator,
+      title=request.data["title"],
+      session_image_url=request.data["session_image_url"],
+      description=request.data["description"],
       address=request.data["address"],
       city=request.data["city"],
       state=request.data["state"],
-      datetime=request.data["datetime"],
       contest=request.data["contest"]
     )
     serializer = SessionSerializer(session)
@@ -46,10 +48,12 @@ class SessionView(ViewSet):
     session = Session.objects.get(pk=pk)
     
     session.creator = request.data["creator"]
+    session.title = request.data["title"]
+    session.session_image_url = request.data["session_image_url"]
+    session.description = request.data["description"]
     session.address = request.data["address"]
     session.city = request.data["city"]
     session.state = request.data["state"]
-    session.datetime = request.data["datetime"]
     session.contest = request.data["contest"]
     session.save()
     
@@ -64,7 +68,7 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
-        fields = ('id','creator', 'address', 'city', 'state', 'datetime', 'contest') 
+        fields = ('id','creator','title', 'session_image_url', 'description', 'address', 'city', 'state', 'contest') 
         depth = 1
 
 class mySessionView(generics.ListCreateAPIView):

@@ -13,7 +13,6 @@ class UserView(ViewSet):
     """Handle GET single user"""
     try:
       user = User.objects.get(pk=pk)
-      uid = request.META['HTTP_AUTHORIZATION']
       serializer = UserSerializer(user)
       return Response(serializer.data)
     
@@ -35,6 +34,9 @@ class UserView(ViewSet):
             first_name=request.data["first_name"],
             last_name=request.data["last_name"],
             bio=request.data["bio"],
+            city=request.data["city"],
+            state=request.data["state"],
+            ride=request.data["ride"],
             profile_image_url=request.data["profile_image_url"],
             email=request.data["email"],
             created_on=request.data["created_on"],
@@ -57,7 +59,10 @@ class UserView(ViewSet):
     user.first_name = request.data["first_name"]
     user.last_name = request.data["last_name"]
     user.handle = request.data["handle"]
+    user.ride = request.data["ride"]
     user.bio = request.data["bio"]
+    user.city = request.data["city"]
+    user.state = request.data["state"]
     user.profile_image_url = request.data["profile_image_url"]
     user.email = request.data["email"]
     user.active = request.data["active"]
@@ -76,7 +81,7 @@ class UserSerializer(serializers.ModelSerializer):
   """JSON serializer for Users"""
   class Meta:
     model = User
-    fields = ('id', 'uid', 'first_name', 'last_name', 'handle', 'bio', 'profile_image_url', 'email', 'created_on', 'active', 'is_staff')
+    fields = ('id', 'uid', 'first_name', 'last_name', 'handle', 'ride', 'bio', 'city', 'state', 'profile_image_url', 'email', 'created_on', 'active', 'is_staff')
       
 class mySessionView(generics.ListCreateAPIView):
   serializer_class = UserSerializer
