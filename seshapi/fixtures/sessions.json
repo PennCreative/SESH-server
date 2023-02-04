@@ -5,10 +5,12 @@
     "fields": {
       "id": 1,
       "creator": 1,
+      "title": "The Comedown",
+      "session_image_url": "https://www.jenkemmag.com/home/wp-content/uploads/2021/09/duncanspots2.png",
+      "description": "Number 1",
       "address": "101 Miller Plaza",
       "city": "Murfreesboro",
       "state": "Tennessee",
-      "datetime": "2009-02-19",
       "contest": false
     }
   },
@@ -18,10 +20,12 @@
     "fields": {
       "id": 2,
       "creator": 1,
+      "title": "In the jungle!",
+      "session_image_url": "https://storage.googleapis.com/fsscs1/images/large/ac436d80aa17b62d034027a57183487c.jpg",
+      "description": "Number 2",
       "address": "102 Miller Plaza",
       "city": "Murfreesboroo",
       "state": "Tennessee",
-      "datetime": "2009-02-19",
       "contest": false
     }
   },
@@ -31,10 +35,12 @@
     "fields": {
       "id": 3,
       "creator": 1,
+      "title": "Darkslide the Dark Ledge",
+      "session_image_url": "https://storage.googleapis.com/fsscs1/images/large/41a9e56ede865686c6517d76d94b97f7.jpg",
+      "description": "Number 3",
       "address": "103 Miller Plaza",
       "city": "Murfreesborooo",
       "state": "Tennessee",
-      "datetime": "2009-02-19",
       "contest": false
     }
   }

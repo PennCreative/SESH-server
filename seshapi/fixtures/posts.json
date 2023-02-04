@@ -5,7 +5,6 @@
     "fields": {
       "id": 1,
       "creator": 1,
-      "publication_date": "2009-02-19",
       "content": "Api's first post"
     }
   },
@@ -15,7 +14,6 @@
     "fields": {
       "id": 2,
       "creator": 1,
-      "publication_date": "2009-02-19",
       "content": "Api's second post"
     }
   },
@@ -25,7 +23,6 @@
     "fields": {
       "id": 3,
       "creator": 1,
-      "publication_date": "2009-02-19",
       "content": "Api's third post"
     }
   }

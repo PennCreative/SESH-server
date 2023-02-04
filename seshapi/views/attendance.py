@@ -3,6 +3,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from seshapi.models import User, Attendance, Session
+from rest_framework.decorators import action
+from rest_framework import generics
 
 class AttendanceView(ViewSet):
   """Requests for Attendance"""
@@ -49,3 +51,14 @@ class AttendanceSerializer(serializers.ModelSerializer):
   class Meta:
     model = Attendance
     fields = ('id', 'session', 'attendee')
+
+class mySessionsView(generics.ListCreateAPIView):
+  serializer_class = AttendanceSerializer
+  def get_queryset(self):
+    attendee_id = self.kwargs['attendee_id']
+    return Attendance.objects.filter(attendee__id=attendee_id)
+class myAttendanceView(generics.ListCreateAPIView):
+  serializer_class = AttendanceSerializer
+  def get_queryset(self):
+    session_id = self.kwargs['session_id']
+    return Attendance.objects.filter(session__id=session_id)
